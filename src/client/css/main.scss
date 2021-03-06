@@ -1,0 +1,74 @@
+
+#section2{
+    display:none;
+}
+
+.section2 .entryHolder {
+    margin-top: 2rem;
+}
+
+.section2 .entryHolder .design-item {
+    position: relative;    
+    border-radius: 20px;
+    background: #fff;
+    color: black;
+    margin: auto;
+    padding: 40px 40px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    align-items: center; 
+    row-gap: 1.0rem;  
+}
+
+
+
+.design-title .title{
+    display:flex;
+    flex-direction: row;
+    font-family: "Open Sans", sans-serif;
+}
+.section p {
+    font-weight: bold ;
+    padding-bottom: 0.5rem;
+}
+
+
+@media (min-width:768px){
+    h1{
+        font-size: 3.5rem;
+    }
+    .section1 h1 {        
+        font-size: 2.5rem;   
+    }
+}
+
+@media(min-width:1000px)
+{
+    h1{
+        font-size: 3.5rem;
+    }
+    .section1 form {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content:space-evenly;
+        align-items: center;
+        row-gap: 3.5rem;    
+    }
+
+    .section2 .entryHolder .design-item {
+        position: relative;    
+        border-radius: 20px;
+        background: #fff;
+        color: black;
+        margin: auto;
+        padding:  40px 40px;
+        width: 60%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+            
+        gap: 0.5rem;  
+    }
+}

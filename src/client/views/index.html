@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <div class = "navbar">
+                <a href = "index.html" class = "navbar-brand">Travel</a>
+                <div class = "navbar-nav">
+                <a href = "">home</a>
+                <a href = "">design</a>
+                <a href = "">blog</a>
+                <a href = "">about</a>
+                </div>
+            </div>
+        </nav>
+        <main>
+        <section class="section1">
+            <div class ="input">
+                <h1>Weather App</h1>
+                <form id=set onsubmit="return Client.handleSubmit(event)">    
+                    <input type="text" placeholder="Enter city name here" class="city" id="city" onkeypress="return Client.dateStart(event)"  onclick="return Client.dateStart(event)" >
+                    <div class=date>
+                        <label>Start Date</label>
+                        <input type="date" class="date" id="start" min="">
+                    </div>
+                    <div class=date>
+                        <label>End Date</label>
+                        <input type="date" class="date" id="return"  min=""  onfocus="return Client.dateReturn(event)">
+                    </div>
+                    <button type="submit" class="generate" id="generate" onclick="return Client.handleSubmit(event)"  onsubmit="return Client.handleSubmit(event)">SUBMIT</button>    
+                </form>
+            </div>
+        </section>
+        <section class="section2" id="section2">
+        <div class="entryHolder">
+            
+                          
+                <!-- item-3 -->
+                <div class = "design-item">
+                    
+                    <figure> 
+                        <div class = "design-img">                                   
+                           <img src = "" class="image1">                            
+                        </div>                                                           
+                    </figure>
+                       
+                    <div class = "design-title">  
+                        <div class="title">                                
+                            <h2 class="city1"></h2><h2>,</h2><h2 class="state"></h2><h2>,</h2><h2 class="country"></h2>                        
+                        </div>
+                        <p class="startdate"></p>
+                        <p class="returnDate"></p>
+                        <h3 class="temp"></h3>
+                        <p class="noOfDays"></p>
+                        <p class="daysLeft"></p>
+                        
+                        <figure> 
+                            <div class = "design-img">                                   
+                                <img src = "" class="icon"> 
+                                <figcaption class="desc"></figcaption>                               
+                            </div>                                                           
+                        </figure>
+                    </div>
+                     
+                </div>              
+           
+        </div>
+        </section>
+
+
+    </main>
+
+    <footer class="footer">
+        <div class="row">
+            <div class="row-item ">
+                <a href="#">
+                    <span class="fab fa-linkedin-in ftr-icon"></span>
+                </a>
+            </div>
+            <div class="row-item">
+                <a href="#">
+                    <span class="fab fa-instagram ftr-icon"></span>
+                </a>
+            </div>
+            <div class="row-item">
+                <a href="#">
+                    <span class="fab fa-facebook-f ftr-icon"></span>
+                </a>
+            </div>
+            <div class="row-item">
+                <a href="#">
+                    <span class="fab fa-youtube ftr-icon"></span>
+                </a> 
+            </div> 
+        </div>
+        <div class="row">
+            <div class="row-item">
+                <a href="#">Terms & Conditions</a>
+            </div>
+            <div class="row-item">
+                <a href="#">
+                    Help
+                </a>
+            </div>
+            <div class="row-item">
+                <a href="#">
+                    Contacts
+                </a>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="row-item">
+                <p class="footer-content">© 2021 Block, All Copyrights Reserved</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }
+</script>
+
+</body>
+</html>
