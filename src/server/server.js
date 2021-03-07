@@ -18,8 +18,8 @@ const cors = require('cors');
 app.use(cors());
 // Initialize the main project folder
 app.use(express.static('dist'));
-const host = 'localhost';
-const port = 8000;
+
+
 
 
 module.exports = app;
@@ -44,11 +44,7 @@ let userData={};
 // To get todays date
 let d = new Date();
 userData['todayDate'] = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
-// Spin up the server
-const server = app.listen(port,host, listening);
- function listening(){    
-    console.log(`running on localhost: ${port}`);
-  };
+
 
 app.get('/', (req, res) => {
   res.status(200).send('./dist/index.html');
@@ -87,7 +83,8 @@ app.get("/geonames", (req, res) => {
 });
 
 app.get("/weatherbit", (req, res) => {
-  const weatherbitURL=`${weatherbit_Root}lat=${userData['lat']}&lon=${userData['lng']}${weatherbit_ApiKey}${weatherbit_Params}`;
+  const weatherbitURL=`${weatherbit_Root}lat=${userData['lat']}&lon=${userData['lng']}&start_date=${userData['startdate']}&end_date=${userData['returnDate']}${weatherbit_ApiKey}${weatherbit_Params}`;
+
   console.log(`weatherbitURL: ${weatherbitURL}`);
   fetch(weatherbitURL)
   .then((res) => res.json())
@@ -108,7 +105,7 @@ app.get("/weatherbit", (req, res) => {
 });
 
 app.get("/pixabay", (req, res) => {
-  const pixabayURL=`${pixabay_Root}${userData['city']},${userData['country']}${pixabay_ApiKey}${pixabay_Params}`;
+  const pixabayURL=`${pixabay_Root}${userData['city']},${userData['state']}${pixabay_ApiKey}${pixabay_Params}`;
   console.log(`pixabayURL: ${pixabayURL}`);
   fetch(pixabayURL)
   .then((res) => res.json())

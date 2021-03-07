@@ -81,3 +81,10 @@ export{
     format
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('generate').addEventListener('click', handleSubmit);
+    document.getElementById('generate').addEventListener('submit', handleSubmit);
+    document.getElementById('set').addEventListener('submit', handleSubmit);
+    document.getElementById('return').addEventListener('focus', dateReturn);
+    document.getElementById('start').addEventListener('focus', dateStart);
+});

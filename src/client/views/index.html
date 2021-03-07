@@ -23,17 +23,17 @@
         <section class="section1">
             <div class ="input">
                 <h1>Weather App</h1>
-                <form id=set onsubmit="return Client.handleSubmit(event)">    
-                    <input type="text" placeholder="Enter city name here" class="city" id="city" onkeypress="return Client.dateStart(event)"  onclick="return Client.dateStart(event)" >
+                <form id=set >    
+                    <input type="text" placeholder="Enter city name here" class="city" id="city"  >
                     <div class=date>
                         <label>Start Date</label>
-                        <input type="date" class="date" id="start" min="">
+                        <input type="date" class="date" id="start" >
                     </div>
                     <div class=date>
                         <label>End Date</label>
-                        <input type="date" class="date" id="return"  min=""  onfocus="return Client.dateReturn(event)">
+                        <input type="date" class="date" id="return">
                     </div>
-                    <button type="submit" class="generate" id="generate" onclick="return Client.handleSubmit(event)"  onsubmit="return Client.handleSubmit(event)">SUBMIT</button>    
+                    <button type="submit" class="generate" id="generate" >SUBMIT</button>    
                 </form>
             </div>
         </section>
@@ -46,13 +46,13 @@
                     
                     <figure> 
                         <div class = "design-img">                                   
-                           <img src = "" class="image1">                            
+                           <img class="image1">                            
                         </div>                                                           
                     </figure>
                        
                     <div class = "design-title">  
                         <div class="title">                                
-                            <h2 class="city1"></h2><h2>,</h2><h2 class="state"></h2><h2>,</h2><h2 class="country"></h2>                        
+                            <lable class="city1"></lable><lable class="state"></lable><lable class="country"></lable>                        
                         </div>
                         <p class="startdate"></p>
                         <p class="returnDate"></p>
@@ -60,11 +60,11 @@
                         <p class="noOfDays"></p>
                         <p class="daysLeft"></p>
                         
-                        <figure> 
-                            <div class = "design-img">                                   
-                                <img src = "" class="icon"> 
+                        <figure  class = "design-img"> 
+                                                           
+                                <img  class="icon"> 
                                 <figcaption class="desc"></figcaption>                               
-                            </div>                                                           
+                                                                                      
                         </figure>
                     </div>
                      

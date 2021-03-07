@@ -54,18 +54,20 @@ export async function handleSubmit(e){
 // Function to GET Project Data 
 async function updateUI(res) {
   console.log("final update"+res)
- document.getElementById('section2').style.display='block';
- document.querySelector('.city1').innerHTML=` ${res.city}`;
- document.querySelector('.state').innerHTML=` ${res.state}`;
- document.querySelector('.country').innerHTML=` ${res.country}`;
- document.querySelector('.startdate').innerHTML=`Start Date: ${res.startdate}`;
- document.querySelector('.returnDate').innerHTML=`End Date: ${res.returnDate}`;
- document.querySelector('.noOfDays').innerHTML=` Duration of the trip ${res.noOfDays} days`;
- document.querySelector('.daysLeft').innerHTML=`Trip starts in ${res.daysLeft} days`;
- document.querySelector('.temp').innerHTML=`${Math.floor(res.temp)} °C`;  
- document.querySelector('.desc').innerHTML=`Mostly ${res.desc}`;   
- document.querySelector('.icon').src=`./imgs/${res.icon}.png`;  
- document.querySelector('.image1').src=res.image1; 
+  document.getElementById('section2').style.display='block';
+  document.querySelector('.city1').innerHTML=` ${res.city},`;
+  document.querySelector('.state').innerHTML=` ${res.state},`;
+  document.querySelector('.country').innerHTML=` ${res.country}`;
+  document.querySelector('.startdate').innerHTML=`Start Date: ${res.startdate}`;
+  document.querySelector('.returnDate').innerHTML=`End Date: ${res.returnDate}`;
+  document.querySelector('.noOfDays').innerHTML=` Duration of the trip ${res.noOfDays} days`;
+  document.querySelector('.daysLeft').innerHTML=`Trip starts in ${res.daysLeft} days`;
+  document.querySelector('.temp').innerHTML=`${Math.floor(res.temp)} °C`;  
+  document.querySelector('.desc').innerHTML=`Mostly ${res.desc}`;   
+  document.querySelector('.icon').setAttribute('src',`./imgs/${res.icon}.png`);  
+  document.querySelector('.image1').setAttribute('alt',`Photo of ${res.city} `);  
+  document.querySelector('.icon').setAttribute('alt',"icon"); 
+  document.querySelector('.image1').setAttribute('src',res.image1); 
 
 }
 
