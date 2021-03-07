@@ -17,8 +17,8 @@ export async function handleSubmit(e){
     const noOfDays = Math.ceil(tripCount / 86400000)+1;
     const countDown = tripStart-today;
     const daysLeft=Math.ceil(countDown / 86400000);
-    startdate=Client.format(startdate);
-    returnDate=Client.format(returnDate);
+    const startdateFormate=Client.format(startdate);
+    const returnDateFormate=Client.format(returnDate);
     console.log("days"+daysLeft);
 
     e.preventDefault();
@@ -30,7 +30,7 @@ export async function handleSubmit(e){
         headers: {
          "Content-Type": "application/json",
             },
-            body: JSON.stringify({ city,startdate,returnDate,noOfDays,daysLeft}),
+            body: JSON.stringify({ city,startdate,returnDate,noOfDays,daysLeft,returnDateFormate,startdateFormate}),
         })
 
       console.log("data is sent");
@@ -58,22 +58,21 @@ async function updateUI(res) {
   document.querySelector('.city1').innerHTML=` ${res.city},`;
   document.querySelector('.state').innerHTML=` ${res.state},`;
   document.querySelector('.country').innerHTML=` ${res.country}`;
-  document.querySelector('.startdate').innerHTML=`Start Date: ${res.startdate}`;
-  document.querySelector('.returnDate').innerHTML=`End Date: ${res.returnDate}`;
+  document.querySelector('.startdate').innerHTML=`Start Date: ${res.startdateFormate}`;
+  document.querySelector('.returnDate').innerHTML=`End Date: ${res.returnDateFormate}`;
   document.querySelector('.noOfDays').innerHTML=` Duration of the trip ${res.noOfDays} days`;
   document.querySelector('.daysLeft').innerHTML=`Trip starts in ${res.daysLeft} days`;
   document.querySelector('.temp').innerHTML=`${Math.floor(res.temp)} °C`;  
-  document.querySelector('.desc').innerHTML=`Mostly ${res.desc}`;   
-  document.querySelector('.icon').setAttribute('src',`./imgs/${res.icon}.png`);  
-  document.querySelector('.image1').setAttribute('alt',`Photo of ${res.city} `);  
-  document.querySelector('.icon').setAttribute('alt',"icon"); 
-  document.querySelector('.image1').setAttribute('src',res.image1); 
+  if(res.daysLeft<16){
+  document.getElementById('icon').innerHTML=` <img  class="icon" src=./imgs/${res.icon}.png alt=icon> <figcaption class="desc"> Mostly ${res.desc}</figcaption>`;
+  }
+  document.getElementById('image1').innerHTML=` <img  class="image1" src=${res.image1} alt=Photo of ${res.city}>`;
 
 }
 
 
 export const callServer = async(url) => {
-console.log("start of call");
+
 
   const asyncParams = {
     
@@ -83,13 +82,11 @@ console.log("start of call");
         'Content-Type': 'application/json;charset=utf-8'
     }
   };
-  console.log("mid of call");
+
     const res = await fetch(url, asyncParams);
       try{
         const data = await res.json();
-        console.log("end of call"+data);
-        return data;
-        
+        return data;        
       } 
       catch {
         console.log(`Error: ${res.statusText}`)

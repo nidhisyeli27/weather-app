@@ -1,6 +1,5 @@
 export function dateStart(e){
   let d = new Date();
-  console.log(" start date"+d)
   let date=d.getDate().toString();
   let mon=(d.getMonth() + 1).toString() ;
   let year=d.getFullYear().toString();
@@ -10,21 +9,17 @@ export function dateStart(e){
   if(mon.length==1){
     mon=`0${mon}`
   }
-  let newDate = year +'-'+mon+ '-' + date ;
-  console.log(" start formate"+ newDate)
+  let newDate = year +'-'+mon+ '-' + date ; 
   document.getElementById('start').setAttribute('min',newDate);
 }
 
 
 export function dateReturn(e){
-   let d = document.getElementById('start').value;
-  console.log("return start date"+d)
-     
+   let d = document.getElementById('start').value;     
   document.getElementById('return').setAttribute('min',d);
 }
  
 export function format(date){
-  console.log("formate edditing")
   let d=date.split("-");
   const year=d[0];
   const mon=d[1];

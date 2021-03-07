@@ -29,7 +29,8 @@ const geoName_ApiKey= `&username=${process.env.geoname_username}`
 const geoName_Params= "&maxRows=1&fuzzy=0.6"
 
 // Personal API Key for Weatherbit API
-const weatherbit_Root= "https://api.weatherbit.io/v2.0/forecast/daily?"
+const weatherbit_Root16= "https://api.weatherbit.io/v2.0/forecast/daily?"
+const weatherbit_Root="https://api.weatherbit.io/v2.0/history/daily?";
 const weatherbit_ApiKey= `&key=${process.env.weatherbit_key}`
 const weatherbit_Params= "&lang=en&units=M"
 
@@ -54,6 +55,8 @@ app.post("/add", (req, res) => {
   userData['city']= req.body.city;
   userData['startdate']= req.body.startdate;
   userData['returnDate']= req.body.returnDate;
+  userData['startdateFormate']= req.body.startdateFormate;
+  userData['returnDateFormate']= req.body.returnDateFormate;
   userData['noOfDays']= req.body.noOfDays;
   userData['daysLeft']= req.body.daysLeft;
   console.log("add data"+userData)
@@ -83,25 +86,43 @@ app.get("/geonames", (req, res) => {
 });
 
 app.get("/weatherbit", (req, res) => {
-  const weatherbitURL=`${weatherbit_Root}lat=${userData['lat']}&lon=${userData['lng']}&start_date=${userData['startdate']}&end_date=${userData['returnDate']}${weatherbit_ApiKey}${weatherbit_Params}`;
-
+  let weatherbitURL
+  if( userData['daysLeft']<16){
+  weatherbitURL=`${weatherbit_Root16}lat=${userData['lat']}&lon=${userData['lng']}${weatherbit_ApiKey}${weatherbit_Params}`;
   console.log(`weatherbitURL: ${weatherbitURL}`);
   fetch(weatherbitURL)
   .then((res) => res.json())
   .then(response => {    
       //console.log(response);
   try {
-      userData['temp']= response.data[0].temp;
-      userData['desc']=response.data[0].weather.description;
-      userData['icon']=response.data[0].weather.icon;
+      userData['temp']= response.data[ userData['daysLeft']].temp;
+      userData['desc']=response.data[ userData['daysLeft']].weather.description;
+      userData['icon']=response.data[ userData['daysLeft']].weather.icon;
       
       console.log(`temp = ${userData['temp']}  desc= ${userData['desc']}`);
       res.send(true);
-  } catch (err) {
+    } catch (err) {
       console.log("error", err);
-  }
-})
-  
+    }
+  })
+  }else{
+    weatherbitURL=`${weatherbit_Root}lat=${userData['lat']}&lon=${userData['lng']}&start_date=${userData['startdate']}&end_date=${userData['returnDate']}${weatherbit_ApiKey}${weatherbit_Params}`;
+    console.log(`weatherbitURL: ${weatherbitURL}`);
+    fetch(weatherbitURL)
+    .then((res) => res.json())
+    .then(response => {    
+        console.log(response);
+    try {
+        userData['temp']= response.data.temp;
+        
+        
+        console.log(`temp = ${userData['temp']}  desc= ${userData['desc']}`);
+        res.send(true);
+      } catch (err) {
+        console.log("error", err);
+      }
+    })
+}
 });
 
 app.get("/pixabay", (req, res) => {
